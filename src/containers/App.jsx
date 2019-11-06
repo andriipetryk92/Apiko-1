@@ -14,7 +14,7 @@ export const App = () => {
     getPosts(
       response =>
         response.length > countPosts &&
-        setPosts(response.slice(countPosts, countPosts + 10))
+        setPosts(response.slice(0, countPosts + 10))
     );
   }, [countPosts]);
 
@@ -39,7 +39,7 @@ export const App = () => {
           <Fragment>
             <PostList posts={contentPosts} />
           </Fragment>
-          <MoreButton newCountPosts={getNextPage} />
+          {posts.length !== 100 && <MoreButton newCountPosts={getNextPage} />}
         </Fragment>
       ) : (
         <Loader />
